@@ -1,17 +1,29 @@
 var socket = io.connect('http://localhost:8080', { 'forceNew': true });
 var cards=[];
+var puntos=0;
+var id;
 
 socket.on('21', function(data) {
-  alert(data);
-  if(is_equal(data,cards))
+  if(data==id){
     alert("ganador");
-  else
+  }
+  else {
     alert("perdedor");
+  }
 });
+
+socket.on('id', function(data) {
+  id=data;
+});
+
 socket.on('one', function(data) {
+  if(data[0]<10)
+    puntos+=data[0];
+  else puntos+=10;
+  var lpuntos = document.getElementById('puntos');
+  lpuntos.innerHTML = "Puntos: "+puntos;
   cards.push(data);
   draw_card(data[0],data[1]);
-  alert(data);
   check_21();
 });
 
@@ -26,31 +38,10 @@ function one(){
 
 function check_21(){
   var total=0;
-  for(var i=0;i<cards.length;i++){
-    if(cards[i][0]<10)
-      total+=cards[i][0];
-    else
-      total+=10;
-  }
-  if(total>=21)
+  if(puntos>21)
     touch();
 }
 
 function touch(){
-  addMessage("21",cards);
-  alert(cards);
-}
-
-function is_equal(c1,c2){
-  if(c1.length!=c2.length)
-    return false;
-  var s1=0
-  var s2=0;
-  for(var i=0;i<c1.length;i++){
-    s1+=c1[i];
-    s2+=c2[i];
-  }
-  if(s1!=s2)
-    return false;
-  return true;
+  addMessage("21",[puntos,id]);
 }

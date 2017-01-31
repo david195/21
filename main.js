@@ -37,36 +37,35 @@ var path    = require("path");
 var players=[];
 var mazo = new baraja();
 mazo.mess();
-mano = [];
+var winer;
 var id=0;
 var touched=0;
 
 io.on('connection', function(socket) {
-  socket.emit('one',mazo.pop());
-  socket.emit('one',mazo.pop());
   players.push(id);
+  socket.emit('id',id);
   id++;
+  socket.emit('one',mazo.pop());
+  socket.emit('one',mazo.pop());
   socket.on('one', function(data) {
     socket.emit('one',mazo.pop());
   });
 
   socket.on('21', function(data) {
-    console.log(data);
-    if(mano.length>0){
-      check_21(mano,data);
-    }
-    else {
-      mano = data;
-    }
     touched++;
+    if(data[0]<=21){
+      if(winer==null){
+        winer = data[1];
+      }
+      else {
+        if(winer<data[0]){
+          winer=data[1];
+        }
+      }
+    }
     if(touched==players.length){
-      io.sockets.emit("21",mano);
-      players=[];
-      mazo = new baraja();
-      mazo.mess();
-      mano = [];
-      id=0;
-      touched=0;
+      io.sockets.emit('21',winer)
+      console.log(winer);
     }
   });
 

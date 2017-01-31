@@ -1,0 +1,23 @@
+#layout{
+  width: 1200px;
+  height: auto;
+  margin-left: auto;
+}
+#canvas{
+  width: 1200; 
+}
+#botones{
+  position: absolute;
+  margin-top: 400px;
+  width: 960px;
+}
+#puntos{
+  text-align: center;
+  font-size: 24px;
+}
+#baraja{
+  margin-right: 100px;
+}
+#touch{
+  margin-left: 180px;
+}
