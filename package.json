@@ -1,0 +1,16 @@
+{
+  "name": "21",
+  "version": "1.0.0",
+  "description": "Juego de 21 usando websockets",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Ruiz Garcia",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.1",
+    "io": "^0.1.10",
+    "socket.io": "^1.7.2"
+  }
+}
