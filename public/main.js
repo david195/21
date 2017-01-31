@@ -1,10 +1,6 @@
 var socket = io.connect('http://localhost:8080', { 'forceNew': true });
 var cards=[];
 
-socket.on('init', function(data) {
-  cards.push(data);
-  alert(data);
-});
 socket.on('21', function(data) {
   alert(data);
   if(is_equal(data,cards))
@@ -14,9 +10,8 @@ socket.on('21', function(data) {
 });
 socket.on('one', function(data) {
   cards.push(data);
-  //var d = document.getElementsById('datos');
-  //d.value+=data[0]+"-";
-  alert(data[0]+"-");
+  draw_card(data[0],data[1]);
+  alert(data);
   check_21();
 });
 

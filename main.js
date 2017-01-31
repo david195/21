@@ -42,8 +42,8 @@ var id=0;
 var touched=0;
 
 io.on('connection', function(socket) {
-  socket.emit('init',mazo.pop());
-  socket.emit('init',mazo.pop());
+  socket.emit('one',mazo.pop());
+  socket.emit('one',mazo.pop());
   players.push(id);
   id++;
   socket.on('one', function(data) {
