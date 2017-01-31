@@ -3,12 +3,17 @@ var cards=[];
 var puntos=0;
 var id;
 
+socket.on('touch', function(data) {
+  if(data)
+    document.getElementById('baraja').onclick='';
+});
+
 socket.on('21', function(data) {
   if(data==id){
-    alert("ganador");
+    writeCanvas("winer");
   }
   else {
-    alert("perdedor");
+    writeCanvas("loser");
   }
 });
 
@@ -38,8 +43,12 @@ function one(){
 
 function check_21(){
   var total=0;
-  if(puntos>21)
+  if(puntos>21){
     touch();
+    document.getElementById('baraja').removeEventListener('onclick',one);
+    document.getElementById('touch').removeEventListener('onclick',touch);
+    alert("mas de 21");
+  }
 }
 
 function touch(){

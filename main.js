@@ -37,9 +37,10 @@ var path    = require("path");
 var players=[];
 var mazo = new baraja();
 mazo.mess();
-var winer;
+var winer=-1;
 var id=0;
 var touched=0;
+var last=false;
 
 io.on('connection', function(socket) {
   players.push(id);
@@ -48,10 +49,13 @@ io.on('connection', function(socket) {
   socket.emit('one',mazo.pop());
   socket.emit('one',mazo.pop());
   socket.on('one', function(data) {
-    socket.emit('one',mazo.pop());
   });
 
   socket.on('21', function(data) {
+    if(!last)
+      last=true;
+    else
+      io.sockets.emit("touch",last);
     touched++;
     if(data[0]<=21){
       if(winer==null){
@@ -65,7 +69,14 @@ io.on('connection', function(socket) {
     }
     if(touched==players.length){
       io.sockets.emit('21',winer)
-      console.log(winer);
+      console.log("ganador: "+winer);
+      players=[];
+      mazo = new baraja();
+      mazo.mess();
+      winer=-1;
+      id=0;
+      touched=0;
+      last=false;
     }
   });
 
