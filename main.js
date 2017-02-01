@@ -103,6 +103,10 @@ function check_21(c1,c2){
   }
 }
 
+app.get("/play",function(req,res){
+  res.sendFile(path.join(__dirname+'/public/game.html'));
+});
+
 server.listen(8080, function() {
   console.log("Servidor corriendo en http://localhost:8080");
 });

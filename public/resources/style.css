@@ -3,6 +3,9 @@
   height: auto;
   margin-left: auto;
 }
+#play{
+  font-size: 60px;
+}
 #canvas{
   width: 1200; 
 }

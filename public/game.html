@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>21 BlackJack</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="main.js"></script>
+  <script src="canvas.js"></script>
+  <link rel="stylesheet" type="text/css" href="resources/style.css">
+
+</head>
+<body>
+<div id='layout'>
+  <p id='puntos'></p>
+  <div id='botones'><center>
+  <input type="image" id='baraja' onclick='one()' src='resources/baraja.png' width="100px" height="130px"/>
+  <input type="image" id='touch' onclick='touch()' src='resources/touch.gif' width="100px" height="100px"/>
+  </center></div>
+  <div id='canvas'><canvas height="500px" width="1000px" id="micanvas"></canvas></div>
+</div>
+</body>
+</html>

@@ -10,10 +10,10 @@ socket.on('touch', function(data) {
 
 socket.on('21', function(data) {
   if(data==id){
-    writeCanvas("winer");
+    winner()
   }
   else {
-    writeCanvas("loser");
+    loser();
   }
 });
 
@@ -28,8 +28,8 @@ socket.on('one', function(data) {
   var lpuntos = document.getElementById('puntos');
   lpuntos.innerHTML = "Puntos: "+puntos;
   cards.push(data);
-  draw_card(data[0],data[1]);
   check_21();
+  draw_card(data[0],data[1]);
 });
 
 function addMessage(type,message) {;
@@ -47,10 +47,11 @@ function check_21(){
     touch();
     document.getElementById('baraja').removeEventListener('onclick',one);
     document.getElementById('touch').removeEventListener('onclick',touch);
-    alert("mas de 21");
+    writeCanvas("More than 21");
   }
 }
 
 function touch(){
   addMessage("21",[puntos,id]);
+  writeCanvas("Waiting...");
 }

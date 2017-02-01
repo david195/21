@@ -22,6 +22,23 @@ function draw_card(n,p){
 
 function writeCanvas(txt){
   cv.clearRect(0,0,1000,500);
+  cv.clearRect(0,0,1000,500);
   cv.font = "bold 100px sans-serif";
   cv.fillText(txt,250,200);
+}
+function loser(){
+  var imagen = new Image();
+  imagen.src = "resources/loser.jpg";
+  cv.clearRect(0,0,1000,500);
+  imagen.onload = function(){
+    cv.drawImage(imagen,200,50);
+  }
+}
+function winner(){
+  var imagen = new Image();
+  imagen.src = "resources/winner.jpg";
+  cv.clearRect(0,0,1000,500);
+  imagen.onload = function(){
+    cv.drawImage(imagen,200,50);
+  }
 }
