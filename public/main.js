@@ -2,10 +2,11 @@ var socket = io.connect('http://localhost:8080', { 'forceNew': true });
 var cards=[];
 var puntos=0;
 var id;
+var last=false;
 
 socket.on('touch', function(data) {
   if(data)
-    document.getElementById('baraja').onclick='';
+    last=true;
 });
 
 socket.on('21', function(data) {
@@ -28,8 +29,10 @@ socket.on('one', function(data) {
   var lpuntos = document.getElementById('puntos');
   lpuntos.innerHTML = "Puntos: "+puntos;
   cards.push(data);
-  check_21();
   draw_card(data[0],data[1]);
+  check_21();
+  if(last)
+    document.getElementById('baraja').onclick='';
 });
 
 function addMessage(type,message) {;

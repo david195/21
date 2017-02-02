@@ -7,7 +7,7 @@ function draw_card(n,p){
   var canvas = document.getElementById("micanvas");
   cv = canvas.getContext("2d");
   var imgX=225*(n-1);
-  var imgY=315*p;
+  var imgY=315*(p-1);
   var imgAncho=225;
   var imgAlto=315;
   var lienzoX=225*ncard;

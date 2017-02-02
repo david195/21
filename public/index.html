@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <title>21 BlackJack</title>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="main.js"></script>
-  <script src="canvas.js"></script>
   <link rel="stylesheet" type="text/css" href="resources/style.css">
 
 <script>
@@ -17,7 +15,7 @@ function init(){
 </head>
 <body>
 <div id='layout'>
-  <center><input type="image" id='init' onclick="init()" src='resources/play.jpg'/><p id='play'><a href='/play'>Play</a></p></center>
+  <center><a href='/play'><input type="image" id='init' src='resources/play.jpg'/><p id='play'>Play</a></p></center>
 </div>
 </body>
 </html>
