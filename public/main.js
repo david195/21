@@ -1,4 +1,4 @@
-var socket = io.connect('http://localhost:8080', { 'forceNew': true });
+var socket = io.connect('http://192.168.1.69:8080', { 'forceNew': true });
 var cards=[];
 var puntos=0;
 var id;
